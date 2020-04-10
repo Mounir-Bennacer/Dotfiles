@@ -41,8 +41,8 @@ Plug 'Shougo/neosnippet-snippets'                 " Snippet support
 Plug 'Yggdroot/indentLine'                        " Indentation guids
 Plug 'machakann/vim-highlightedyank'              " Highlighting yanked words/lines
 " === Git Plugins === "
-Plug 'tpope/vim-fugitive'                         " Enable git changes to be shown in sign column
 Plug 'airblade/vim-gitgutter'                     " Gitgutter
+Plug 'iberianpig/tig-explorer.vim'                " GIT Explorer
 " === Javascript Plugins === "
 Plug 'HerringtonDarkholme/yats.vim'               " Typescript syntax highlighting
 Plug 'mxw/vim-jsx'                                " ReactJS JSX syntax highlighting
@@ -93,6 +93,7 @@ Plug 'neoclide/coc-sources',    {'do': 'yarn install --frozen-lockfile'}
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Syntax highlighting for NerdTree
 " Plug 'mhinz/vim-signify'                          " Enable git changes to be shown in sign column
 " Plug 'vifm/vifm.vim'                              " Vim File Manager
+" Plug 'tpope/vim-fugitive'                         " Enable git changes to be shown in sign column
 
 " Initialize plugin system
 call plug#end()
