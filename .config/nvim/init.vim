@@ -73,14 +73,31 @@ set nobackup
 
 "{{{ NETRW SETUP
 "
-  let g:netrw_banner = 0
-  let g:netrw_liststyle = 3
-  let g:netrw_browse_split = 4
-  let g:netrw_winsize = 20
+"  let g:netrw_banner = 0
+"  let g:netrw_liststyle = 3
+"  let g:netrw_browse_split = 4
+"  let g:netrw_winsize = 20
 
-  let g:NetrwIsOpen=0
+"  let g:NetrwIsOpen=0
 "
 "}}}
+
+" {{{ NERDTree Config
+
+" Show hidden files/directories
+let g:NERDTreeShowHidden = 1
+
+" Remove bookmarks and help text from NERDTree
+let g:NERDTreeMinimalUI = 1
+
+" Custom icons for expandable/expanded directories
+let g:NERDTreeDirArrowExpandable = '⬏'
+let g:NERDTreeDirArrowCollapsible = '⬎'
+
+" Hide certain files and directories from NERDTree
+let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+"
+" }}}}}}
 
 "{{{ DENITE SETUP
 
@@ -393,7 +410,13 @@ cmap w!! w !sudo tee %
 " Used when you want to paste over something without it getting copied to
 " Vim's default buffer
 vnoremap <leader>p "_dP
-"
+
+" === Nerdtree shorcuts === "
+"  <leader>n - Toggle NERDTree on/off
+"  <leader>f - Opens current file location in NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
+
 "}}}
 
 "{{{ MISC SETUP

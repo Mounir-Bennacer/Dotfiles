@@ -26,7 +26,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " === Editing Plugins === "
 Plug 'ntpeters/vim-better-whitespace'             " Trailing whitespace highlighting & automatic fixing
-Plug 'mcchrish/nnn.vim'                           " using vim-plug
 Plug 'vimwiki/vimwiki'                            " Vim wiki
 Plug 'frazrepo/vim-rainbow'                       " Vim bracket highlighting
 Plug 'jreybert/vimagit'                           " Better GIT workflow
@@ -81,6 +80,9 @@ Plug 'ryanoasis/vim-devicons'                     " Icons
 Plug 'junegunn/goyo.vim'                          " Distraction free mode
 Plug 'mhinz/vim-startify'                         " Better homepage
 Plug 'christoomey/vim-tmux-navigator'             " Tmux style navigation
+Plug 'scrooloose/nerdtree'                        " File explorer
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Syntax highlighting for NerdTree
+
 " === CoC === "
 Plug 'neoclide/coc.nvim',       { 'branch': 'release', 'do': { -> coc#util#install() } }
 "" for coc-word plugin
@@ -89,11 +91,10 @@ Plug 'neoclide/coc-sources',    {'do': 'yarn install --frozen-lockfile'}
 
 "
 " === DEPRECATED === "
-" Plug 'scrooloose/nerdtree'                        " File explorer
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Syntax highlighting for NerdTree
 " Plug 'mhinz/vim-signify'                          " Enable git changes to be shown in sign column
 " Plug 'vifm/vifm.vim'                              " Vim File Manager
 " Plug 'tpope/vim-fugitive'                         " Enable git changes to be shown in sign column
+" Plug 'mcchrish/nnn.vim'                           " using vim-plug
 
 " Initialize plugin system
 call plug#end()
