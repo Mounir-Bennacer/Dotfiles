@@ -47,8 +47,8 @@ set hidden                      " Hides buffers instead of closing them
 "{{{ TAB & SPACE SETTINGS
 "
 set expandtab                   " Insert spaces when TAB is pressed.
-set softtabstop=2               " Change number of spaces that a <Tab> counts for during editing ops
-set shiftwidth=2                " Indentation amount for < and > commands.
+set softtabstop=4               " Change number of spaces that a <Tab> counts for during editing ops
+set shiftwidth=4                " Indentation amount for < and > commands.
 set nowrap                      " do not wrap long lines by default
 set cmdheight=1                 " Only one line for command line
 "
@@ -89,6 +89,8 @@ let g:NERDTreeShowHidden = 1
 
 " Remove bookmarks and help text from NERDTree
 let g:NERDTreeMinimalUI = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 
 " Custom icons for expandable/expanded directories
 let g:NERDTreeDirArrowExpandable = '⬏'
@@ -96,7 +98,6 @@ let g:NERDTreeDirArrowCollapsible = '⬎'
 
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
-"
 " }}}}}}
 
 "{{{ DENITE SETUP
@@ -172,10 +173,34 @@ endtry
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Use <C-l> for trigger snippet expand.
+imap <C-l> <Plug>(coc-snippets-expand)
+
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
+
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
+
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
 "}}}
 
 "{{{ ESLINT SETUP
@@ -183,6 +208,9 @@ inoremap <silent><expr> <TAB>
 let g:ale_fixers = {
  \ 'javascript': ['eslint']
  \ }
+
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
 
 let g:ale_sign_error = '❌'
 " let g:ale_sign_error = '💣'
@@ -194,7 +222,6 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif "Close preview win
 "}}}
 
 "{{{ NEOSNIPPET SETUP
-
 " Map <C-k> as shortcut to activate snippet if available
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)

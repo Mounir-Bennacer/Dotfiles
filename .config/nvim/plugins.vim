@@ -31,12 +31,9 @@ Plug 'frazrepo/vim-rainbow'                       " Vim bracket highlighting
 Plug 'jreybert/vimagit'                           " Better GIT workflow
 Plug 'ap/vim-css-color'                           " Color previews for CSS
 Plug 'jiangmiao/auto-pairs'                       " auto close / create pairs
-Plug 'tpope/vim-surround'                         " Surround plugin
 Plug 'takac/vim-hardtime'                         " hardtime
 Plug 'Shougo/denite.nvim'                         " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/echodoc.vim'                         " Print function signatures in echo area
-Plug 'Shougo/neosnippet'                          " Snippet support
-Plug 'Shougo/neosnippet-snippets'                 " Snippet support
 Plug 'Yggdroot/indentLine'                        " Indentation guids
 Plug 'machakann/vim-highlightedyank'              " Highlighting yanked words/lines
 " === Git Plugins === "
@@ -47,7 +44,7 @@ Plug 'HerringtonDarkholme/yats.vim'               " Typescript syntax highlighti
 Plug 'mxw/vim-jsx'                                " ReactJS JSX syntax highlighting
 Plug 'heavenshell/vim-jsdoc'                      " Generate JSDoc commands based on function signature
 " === ALE linter ===
-Plug 'w0rp/ale'                                   " Asynchronous Lint on vim
+Plug 'dense-analysis/ale'                         " Asynchronous Lint on vim
 " === Colorscheme === "
 Plug 'fneu/breezy'                                " breezy colorscheme
 Plug 'ParamagicDev/vim-medic_chalk'               " medic_chalk colorscheme
@@ -72,6 +69,7 @@ Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'itchyny/lightline.vim'                      " Customized vim status line
 Plug 'sainnhe/artify.vim'
 Plug 'itchyny/vim-gitbranch'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'macthecadillac/lightline-gitdiff'
 Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
@@ -95,6 +93,9 @@ Plug 'neoclide/coc-sources',    {'do': 'yarn install --frozen-lockfile'}
 " Plug 'vifm/vifm.vim'                              " Vim File Manager
 " Plug 'tpope/vim-fugitive'                         " Enable git changes to be shown in sign column
 " Plug 'mcchrish/nnn.vim'                           " using vim-plug
+" Plug 'Shougo/neosnippet'                          " Snippet support
+" Plug 'Shougo/neosnippet-snippets'                 " Snippet support
+" Plug 'tpope/vim-surround'                         " Surround plugin
 
 " Initialize plugin system
 call plug#end()
