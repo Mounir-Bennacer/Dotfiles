@@ -80,6 +80,10 @@ Plug 'mhinz/vim-startify'                         " Better homepage
 Plug 'christoomey/vim-tmux-navigator'             " Tmux style navigation
 Plug 'scrooloose/nerdtree'                        " File explorer
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Syntax highlighting for NerdTree
+Plug 'preservim/nerdcommenter'
+Plug 'wellle/targets.vim'                         " https://github.com/wellle/targets.vim
+" === DOGE === "
+Plug 'kkoomen/vim-doge'                           " Neovim Documentation https://github.com/kkoomen/vim-doge
 
 " === CoC === "
 Plug 'neoclide/coc.nvim',       { 'branch': 'release', 'do': { -> coc#util#install() } }
