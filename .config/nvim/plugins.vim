@@ -25,6 +25,7 @@ call plug#begin('~/.config/nvim/plugged')
 " ============================================================================ "
 
 " === Editing Plugins === "
+Plug 'easymotion/vim-easymotion'
 Plug 'ntpeters/vim-better-whitespace'             " Trailing whitespace highlighting & automatic fixing
 Plug 'vimwiki/vimwiki'                            " Vim wiki
 Plug 'frazrepo/vim-rainbow'                       " Vim bracket highlighting
@@ -36,6 +37,7 @@ Plug 'Shougo/denite.nvim'                         " Denite - Fuzzy finding, buff
 Plug 'Shougo/echodoc.vim'                         " Print function signatures in echo area
 Plug 'Yggdroot/indentLine'                        " Indentation guids
 Plug 'machakann/vim-highlightedyank'              " Highlighting yanked words/lines
+Plug 'junegunn/vim-easy-align'                    " Align items like equal signs
 " === Git Plugins === "
 Plug 'airblade/vim-gitgutter'                     " Gitgutter
 Plug 'iberianpig/tig-explorer.vim'                " GIT Explorer
@@ -65,11 +67,12 @@ Plug 'vim-pandoc/vim-pandoc-syntax'               " Syntax Highlighting
 Plug 'unblevable/quick-scope'                     " Syntax Highlighting
 Plug 'rust-lang/rust.vim'                         " Rust-lang syntax
 Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'sheerun/vim-polyglot'
 " === UI === "
+Plug 'vifm/vifm.vim'                              " using vifm as file manager
 Plug 'itchyny/lightline.vim'                      " Customized vim status line
 Plug 'sainnhe/artify.vim'
 Plug 'itchyny/vim-gitbranch'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'macthecadillac/lightline-gitdiff'
 Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
@@ -78,10 +81,8 @@ Plug 'ryanoasis/vim-devicons'                     " Icons
 Plug 'junegunn/goyo.vim'                          " Distraction free mode
 Plug 'mhinz/vim-startify'                         " Better homepage
 Plug 'christoomey/vim-tmux-navigator'             " Tmux style navigation
-Plug 'scrooloose/nerdtree'                        " File explorer
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Syntax highlighting for NerdTree
-Plug 'preservim/nerdcommenter'
 Plug 'wellle/targets.vim'                         " https://github.com/wellle/targets.vim
+Plug 'rizzatti/dash.vim'                          " dash plugin integration
 " === DOGE === "
 Plug 'kkoomen/vim-doge'                           " Neovim Documentation https://github.com/kkoomen/vim-doge
 
@@ -94,12 +95,14 @@ Plug 'neoclide/coc-sources',    {'do': 'yarn install --frozen-lockfile'}
 "
 " === DEPRECATED === "
 " Plug 'mhinz/vim-signify'                          " Enable git changes to be shown in sign column
-" Plug 'vifm/vifm.vim'                              " Vim File Manager
 " Plug 'tpope/vim-fugitive'                         " Enable git changes to be shown in sign column
-" Plug 'mcchrish/nnn.vim'                           " using vim-plug
 " Plug 'Shougo/neosnippet'                          " Snippet support
 " Plug 'Shougo/neosnippet-snippets'                 " Snippet support
 " Plug 'tpope/vim-surround'                         " Surround plugin
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Syntax highlighting for NerdTree
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'scrooloose/nerdtree'                        " File explorer
+" Plug 'preservim/nerdcommenter'
 
 " Initialize plugin system
 call plug#end()

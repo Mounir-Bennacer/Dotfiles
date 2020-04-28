@@ -71,59 +71,64 @@ set nobackup
 "
 "}}}
 
-"{{{ NETRW SETUP
+"{{{ VIFM SETUP
 "
-"  let g:netrw_banner = 0
-"  let g:netrw_liststyle = 3
-"  let g:netrw_browse_split = 4
-"  let g:netrw_winsize = 20
-
-"  let g:NetrwIsOpen=0
+map <Leader>vv :Vifm<CR>
+map <Leader>vs :VsplitVifm<CR>
+map <Leader>sp :SplitVifm<CR>
+map <Leader>vv :Vifm<CR>
+map <Leader>dv :DiffVifm<CR>
+map <Leader>tv :TabVifm<CR>
 "
 "}}}
 
+"{{{ DOGE DOCUMENTATION SETUP
+"
+map <Leader>d :DogeGenerate<CR>
+"
+"}}}
 " {{{ NERDTree Config
 
 " Show hidden files/directories
-let g:NERDTreeShowHidden = 1
+" let g:NERDTreeShowHidden = 1
 
 " Remove bookmarks and help text from NERDTree
-let g:NERDTreeMinimalUI = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+" let g:NERDTreeMinimalUI = 1
+" let NERDTreeMinimalUI = 1
+" let NERDTreeDirArrows = 1
 
 " Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowExpandable = '⬏'
-let g:NERDTreeDirArrowCollapsible = '⬎'
+" let g:NERDTreeDirArrowExpandable = '⬏'
+" let g:NERDTreeDirArrowCollapsible = '⬎'
 
 " Hide certain files and directories from NERDTree
-let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+" let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 " }}}
 "
 " {{{ NERDComment Config
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+" let g:NERDSpaceDelims = 1
 
 " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+" let g:NERDCompactSexyComs = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
+" let g:NERDDefaultAlign = 'left'
 
 " Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
+" let g:NERDAltDelims_java = 1
 
 " Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
+" let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
+" let g:NERDTrimTrailingWhitespace = 1
 
 " Enable NERDCommenterToggle to check all selected lines is commented or not
-let g:NERDToggleCheckAllLines = 1
+" let g:NERDToggleCheckAllLines = 1
 " }}}
 
 "{{{ DENITE SETUP
@@ -290,7 +295,7 @@ let g:jsx_ext_required = 0                " Highlight jsx syntax even in non .js
 "let g:netrw_liststyle = 3                 " NerdTree Remplacement
 set termguicolors                         " Enable true color support
 set background=dark                       " Editor theme
-colorscheme palenight
+colorscheme default
 
 if (has('nvim'))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
@@ -538,7 +543,7 @@ let g:startify_lists = [
 
 "{{{2 LIGHTLINE COLORSCHEME
 
-let g:lightline = { 'colorscheme': 'palenight' }
+let g:lightline = { 'colorscheme': 'default' }
 set laststatus=2                          " Always show statusline
 set t_Co=256                              " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 
