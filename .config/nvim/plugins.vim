@@ -33,13 +33,18 @@ Plug 'jreybert/vimagit'                           " Better GIT workflow
 Plug 'ap/vim-css-color'                           " Color previews for CSS
 Plug 'jiangmiao/auto-pairs'                       " auto close / create pairs
 Plug 'takac/vim-hardtime'                         " hardtime
-Plug 'Shougo/denite.nvim'                         " Denite - Fuzzy finding, buffer management
 Plug 'Shougo/echodoc.vim'                         " Print function signatures in echo area
 Plug 'Yggdroot/indentLine'                        " Indentation guids
 Plug 'machakann/vim-highlightedyank'              " Highlighting yanked words/lines
 Plug 'junegunn/vim-easy-align'                    " Align items like equal signs
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 " === Git Plugins === "
-Plug 'airblade/vim-gitgutter'                     " Gitgutter
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'junegunn/gv.vim'
 Plug 'iberianpig/tig-explorer.vim'                " GIT Explorer
 " === Javascript Plugins === "
 Plug 'HerringtonDarkholme/yats.vim'               " Typescript syntax highlighting
@@ -55,6 +60,7 @@ Plug 'sainnhe/edge'
 Plug 'sainnhe/sonokai'
 Plug 'sainnhe/forest-night'
 Plug 'drewtempelmeyer/palenight.vim'              " palenight colorscheme
+Plug 'arcticicestudio/nord-vim', { 'branch': 'develop' }                   " nord theme
 " === Syntax Highlighting === "
 Plug 'elzr/vim-json'                              " Syntax highlighting for json
 Plug 'othree/javascript-libraries-syntax.vim'     " Syntax highlighting for javascript libraries
@@ -72,7 +78,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vifm/vifm.vim'                              " using vifm as file manager
 Plug 'itchyny/lightline.vim'                      " Customized vim status line
 Plug 'sainnhe/artify.vim'
-Plug 'itchyny/vim-gitbranch'
 Plug 'macthecadillac/lightline-gitdiff'
 Plug 'maximbaz/lightline-ale'
 Plug 'albertomontesg/lightline-asyncrun'
@@ -90,19 +95,16 @@ Plug 'kkoomen/vim-doge'                           " Neovim Documentation https:/
 Plug 'neoclide/coc.nvim',       { 'branch': 'release', 'do': { -> coc#util#install() } }
 "" for coc-word plugin
 Plug 'neoclide/coc-sources',    {'do': 'yarn install --frozen-lockfile'}
-"
 
-"
+
+
 " === DEPRECATED === "
-" Plug 'mhinz/vim-signify'                          " Enable git changes to be shown in sign column
-" Plug 'tpope/vim-fugitive'                         " Enable git changes to be shown in sign column
 " Plug 'Shougo/neosnippet'                          " Snippet support
 " Plug 'Shougo/neosnippet-snippets'                 " Snippet support
 " Plug 'tpope/vim-surround'                         " Surround plugin
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'    " Syntax highlighting for NerdTree
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'scrooloose/nerdtree'                        " File explorer
-" Plug 'preservim/nerdcommenter'
+" Plug 'airblade/vim-gitgutter'                     " Gitgutter
+" Plug 'itchyny/vim-gitbranch'
+" Plug 'Shougo/denite.nvim'                         " Denite - Fuzzy finding, buffer management
 
 " Initialize plugin system
 call plug#end()

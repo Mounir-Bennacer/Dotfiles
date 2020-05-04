@@ -11,3 +11,5 @@ t/Users/Phaoris/.local/share/vifm/Trash/000_app.blade.php
 	/Users/Phaoris/Code/appi/mesg/resources/views/layouts/app.blade.php
 t/Users/Phaoris/.local/share/vifm/Trash/000_2020_04_23_080921_create_g_t_c_s_s_table.php
 	/Users/Phaoris/Code/appi/mesg/database/migrations/2020_04_23_080921_create_g_t_c_s_s_table.php
+t/Users/Phaoris/.local/share/vifm/Trash/000_Auth
+	/Users/Phaoris/Code/appi/mesg/app/Http/Controllers/Auth

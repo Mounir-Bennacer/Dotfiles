@@ -167,3 +167,4 @@ prompt spaceship
 alias cfg='/usr/bin/git --git-dir=/Users/Phaoris/.cfg/ --work-tree=/Users/Phaoris'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+fpath+=${ZDOTDIR:-~}/.zsh_functions
