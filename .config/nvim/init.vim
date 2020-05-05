@@ -8,6 +8,7 @@
 "    ░░    ░░ ░░░  ░░  ░░ ░░░     ░░░░░
 
 
+source ~/.config/nvim/general/paths.vim
 source ~/.config/nvim/plugins.vim
 source ~/.config/nvim/keymapping/ui.vim
 source ~/.config/nvim/keymapping/coc.vim
@@ -22,4 +23,4 @@ source ~/.config/nvim/keymapping/vimwiki.vim
 source ~/.config/nvim/keymapping/javascript.vim
 source ~/.config/nvim/keymapping/echodoc.vim
 source ~/.config/nvim/keymapping/indent.vim
-
+source ~/.config/nvim/keymapping/sneak.vim

@@ -1,8 +1,24 @@
 " UI
 "
+let g:mapleader = ','
 set termguicolors                         " Enable true color support
 set background=dark                       " Editor theme
-colorscheme nord
+colorscheme palenight
+
+" augroup remember_folds
+"   autocmd!
+"   autocmd BufWinLeave * mkview
+"   autocmd BufWinEnter * silent! loadview
+" augroup END
+"
+" augroup AutoSaveFolds
+"   autocmd!
+"   " view files are about 500 bytes
+"   " bufleave but not bufwinleave captures closing 2nd tab
+"   " nested is needed by bufwrite* (if triggered via other autocmd)
+"   autocmd BufWinLeave,BufLeave,BufWritePost ?* nested silent! mkview!
+"   autocmd BufWinEnter ?* silent! loadview
+" augroup end
 
 if (has('nvim'))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >

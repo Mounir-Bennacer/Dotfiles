@@ -51,11 +51,9 @@ antibody bundle zsh-users/zsh-autosuggestions > ~/.zshrc.log
 antibody bundle zsh-users/zsh-history-substring-search > ~/.zshrc.log
 antibody bundle zsh-users/zsh-completions > ~/.zshrc.log
 # antibody bundle $HOME/Editor-Settings/ZSH-Plugins/oh-my-zsh-master/plugins/osx > ~/.zshrc.log
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/heroku > ~/.zshrc.log
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/node > ~/.zshrc.log
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/web-search > ~/.zshrc.log
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/sudo > ~/.zshrc.log
-# antibody bundle robbyrussell/oh-my-zsh path:plugins/react-native > ~/.zshrc.log
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/kubectl > ~/.zshrc.log
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/npm > ~/.zshrc.log
 # antibody bundle JamesKovacs/zsh_completions_mongodb > ~/.zshrc.log
@@ -103,6 +101,8 @@ alias ta="t a -t"
 alias tls="t ls"
 alias tn="t new -t"
 
+alias vim='nvim'
+alias v='nvim'
 # ====================================================================
 # ===                       EXPORT PATHS                           ===
 # ====================================================================

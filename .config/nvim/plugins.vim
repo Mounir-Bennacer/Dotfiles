@@ -40,6 +40,7 @@ Plug 'junegunn/vim-easy-align'                    " Align items like equal signs
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'
+Plug 'justinmk/vim-sneak'                         " Jump to any location specified by two characters.
 " === Git Plugins === "
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'

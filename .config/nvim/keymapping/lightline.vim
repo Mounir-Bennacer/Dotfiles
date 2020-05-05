@@ -2,7 +2,7 @@
 
 " LIGHTLINE COLORSCHEME
 
-let g:lightline = { 'colorscheme': 'nord' }
+let g:lightline = { 'colorscheme': 'palenight' }
 set laststatus=2                          " Always show statusline
 set t_Co=256                              " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 
@@ -23,6 +23,7 @@ endfunction"}}}
 function! CocCurrentFunction()"{{{
   return get(b:, 'coc_current_function', '')
 endfunction"}}}
+
 function! Devicons_Filetype()"{{{
   " return winwidth(0) > 70 ? (strlen(&filetype) ? WebDevIconsGetFileTypeSymbol() . ' ' . &filetype : 'no ft') : ''
   return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
@@ -68,7 +69,6 @@ function! Artify_gitbranch() abort"{{{
     return "\ue61b"
   endif
 endfunction "}}}
-
 
 set laststatus=2  " Basic
 set noshowmode  " Disable show mode info
