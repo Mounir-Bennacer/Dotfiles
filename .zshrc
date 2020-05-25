@@ -1,11 +1,12 @@
 # ===================================================================#
 #                         ZSH CONFIG SETUP                           #
-#                                                                    #
-#  AUTHOR: MOUNIR BENNACER                                           #
-#  VERSION: 1.3.7                                                    #
+#  Author: Mounir BENNACER                                           #
+#  Version: 1.3.7                                                    #
 #                                                                    #
 # ===================================================================#
 export LC_ALL=en_US.UTF-8
+
+export ZSH=$HOME/.oh-my-zsh
 
 # Created by manan for 4.4.2
 export TERM="xterm-256color"
@@ -45,7 +46,7 @@ zstyle ':completion:*' group-name '' # group results by category
 zstyle ':completion:::::' completer _expand _complete _ignored _approximate #enable approximate matches for completion
 
 #Plugins setup
-source <(antibody init)
+# source <(antibody init)
 antibody bundle zdharma/fast-syntax-highlighting > ~/.zshrc.log
 antibody bundle zsh-users/zsh-autosuggestions > ~/.zshrc.log
 antibody bundle zsh-users/zsh-history-substring-search > ~/.zshrc.log
@@ -57,6 +58,8 @@ antibody bundle zsh-users/zsh-completions > ~/.zshrc.log
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/kubectl > ~/.zshrc.log
 # antibody bundle robbyrussell/oh-my-zsh path:plugins/npm > ~/.zshrc.log
 # antibody bundle JamesKovacs/zsh_completions_mongodb > ~/.zshrc.log
+
+source <(curl -s https://raw.githubusercontent.com/wfxr/forgit/master/forgit.plugin.zsh)
 
 autoload -Uz compinit;compinit -i
 
@@ -76,15 +79,15 @@ alias gco="git checkout"
 alias gcob="git checkout -b"
 alias gp="git push"
 alias gm="git merge"
-alias ga="git add ."
+# alias ga="git add ."
 alias gcm="git commit -m"
 alias gpl="git pull"
 alias gst="git stash"
 alias gstl="git stash list"
 alias glg='git log --graph --oneline --decorate --all'
 
-# alias ls='colorls'
-alias ls="lsd"
+alias ls='colorls'
+# alias ls="lsd"
 alias l='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
@@ -101,12 +104,10 @@ alias ta="t a -t"
 alias tls="t ls"
 alias tn="t new -t"
 
-alias vim='nvim'
 alias v='nvim'
 # ====================================================================
 # ===                       EXPORT PATHS                           ===
 # ====================================================================
-
 export PATH="/usr/local/opt/libpcap/bin:$PATH"
 fpath=(/usr/local/share/zsh-completions $fpath)
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
@@ -136,35 +137,107 @@ precmd() {
   echo -ne "\e]1;${PWD##*/}\a"
 }
 
-# Create a new react app
-
-react-app() {
-  npx create-react-app $1
-  cd $1
-  npm i -D eslint
-  npm i -D eslint-config-prettier eslint-plugin-prettier
-  npm i -D eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
-  cp "${HOME}/.eslintrc.json" .
-  cp "${HOME}/.prettierrc" .
-  echo $1 > README.md
-  rm -rf yarn.lock
-  cd src
-  rm -f App.css App.test.js index.css logo.svg serviceWorker.js
-  mkdir components views
-  git add -A
-  git commit -m "Initial commit."
-  cd ..
-  clear
-  code .
-}
 echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshr
 
 # Set Spaceship ZSH as a prompt
 autoload -U promptinit; promptinit
 autoload -U compinit && compinit
 plugins=(… zsh-completions)
+plugins=(… colorize)
 prompt spaceship
 alias cfg='/usr/bin/git --git-dir=/Users/Phaoris/.cfg/ --work-tree=/Users/Phaoris'
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+###############################################################################
+#                                                                             #
+#                                  CUSTOM                                     #
+#                                                                             #
+###############################################################################
+
+# cdf - cd into the directory of the selected file
+cdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# fbr - checkout git branch (including remote branches)
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+fbr() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+# fco - checkout git branch/tag
+fco() {
+  local tags branches target
+  branches=$(
+    git --no-pager branch --all \
+      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
+    | sed '/^$/d') || return
+  tags=$(
+    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$branches"; echo "$tags") |
+    fzf --no-hscroll --no-multi -n 2 \
+        --ansi) || return
+  git checkout $(awk '{print $2}' <<<"$target" )
+}
+
+
+# fco_preview - checkout git branch/tag, with a preview showing the commits between the tag/branch and HEAD
+fco_preview() {
+  local tags branches target
+  branches=$(
+    git --no-pager branch --all \
+      --format="%(if)%(HEAD)%(then)%(else)%(if:equals=HEAD)%(refname:strip=3)%(then)%(else)%1B[0;34;1mbranch%09%1B[m%(refname:short)%(end)%(end)" \
+    | sed '/^$/d') || return
+  tags=$(
+    git --no-pager tag | awk '{print "\x1b[35;1mtag\x1b[m\t" $1}') || return
+  target=$(
+    (echo "$branches"; echo "$tags") |
+    fzf --no-hscroll --no-multi -n 2 \
+        --ansi --preview="git --no-pager log -150 --pretty=format:%s '..{2}'") || return
+  git checkout $(awk '{print $2}' <<<"$target" )
+}
+
+# fgst - pick files from `git status -s` 
+is_in_git_repo() {
+  git rev-parse HEAD > /dev/null 2>&1
+}
+
+fgst() {
+  # "Nothing to see here, move along"
+  is_in_git_repo || return
+
+  local cmd="${FZF_CTRL_T_COMMAND:-"command git status -s"}"
+
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -m "$@" | while read -r item; do
+    echo "$item" | awk '{print $2}'
+  done
+  echo
+}
+
+# Interactive fixup of a commit
+#
+# git fixup
+# git rebase -i master --autosquash
+#
+function git-fixup () {
+  git ll -n 20 | fzf | cut -f 1 | xargs git commit --no-verify --fixup
+}
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
