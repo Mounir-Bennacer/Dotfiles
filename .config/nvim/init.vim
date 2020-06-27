@@ -230,6 +230,7 @@ Plug 'andymass/vim-matchup'
   let g:loaded_matchit = 1
 Plug 'jiangmiao/auto-pairs'
 Plug 'unblevable/quick-scope'
+Plug 'vimwiki/vimwiki'
 
   " Trigger a highlight in the appropriate direction when pressing these keys:
   let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
@@ -240,8 +241,11 @@ Plug 'unblevable/quick-scope'
   augroup END
 
 " Documentation Generator
-" Plug 'kkoomen/vim-doge'
-" Plug 'justinmk/vim-dirvish' 
+Plug 'kkoomen/vim-doge'
+  nnoremap <silent> <Plug>(doge-generate) :<C-u>call doge#generate()<CR>
+  if !hasmapto('<Plug>(doge-generate)')
+      nmap <unique> <Leader>gd <Plug>(doge-generate)
+  endif
 
 call plug#end()
 endif
@@ -368,6 +372,7 @@ if exists('&fixeol')
   set nofixeol
 endif
 
+" silent! colorscheme badwolf
 silent! colorscheme badwolf
 
 if has('nvim')
@@ -662,7 +667,7 @@ function! s:copy_rtf(line1, line2, ...)
   call setline(1, lines)
   doautocmd BufNewFile filetypedetect
 
-  execute 'colo' get(a:000, 0, 'seoul256-light')
+  " execute 'colo' get(a:000, 0, 'seoul256-light')
   hi Normal ctermbg=NONE guibg=NONE
 
   let lines = getline(a:line1, a:line2)
@@ -1590,7 +1595,7 @@ if has_key(g:plugs, 'coc.nvim')
 
   let g:coc_global_extensions = ['coc-git', 'coc-yaml', 'coc-solargraph',
     \ 'coc-r-lsp', 'coc-python', 'coc-html', 'coc-json', 'coc-css',
-    \ 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-emoji', 'coc-go'] " , 'coc-java']
+    \ 'coc-prettier', 'coc-eslint', 'coc-tsserver', 'coc-emoji'] " , 'coc-java']
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
   let g:go_doc_keywordprg_enabled = 0
@@ -1687,7 +1692,7 @@ command! -bang -nargs=* GGrep
 
 function! s:templated(type)
   execute 'doautocmd filetypedetect BufNewFile' fnamemodify(expand('<afile>'), ':r')
-  let &filetype = join([&filetype, a:type], '.')
+   let &filetype = join(uniq(add(split(&filetype, '\.'), a:type)), '.') 
 endfunction
 
 augroup vimrc
@@ -1787,5 +1792,24 @@ if g:env =~# 'MINGW'
 	" ... to do MinGW-specific stuff (Git Bash, mainly).
 endif 
 
+" }}}
 
+" ============================================================================
+"  VIMWIKI SETUP  {{{
+" ============================================================================
+let g:vimwiki_global_ext = 0
+        let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+        let g:vimwiki_root = '~/vimwiki'
+        let g:vimwiki_listsyms = '✗○◐●✓'
+        let g:vimwiki_list = [
+            \{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'},
+            \{'path': '~/vimwiki/academia', 'syntax': 'markdown', 'ext':'.md'},
+            \{'path': '~/vimwiki/social', 'syntax': 'markdown', 'ext':'.md'},
+            \{'path': '~/vimwiki/tech', 'syntax': 'markdown', 'ext':'.md'},
+            \{'path': '~/vimwiki/tech/linux', 'syntax': 'markdown', 'ext':'.md'},
+            \{'path': '~/vimwiki/tech/css', 'syntax': 'markdown', 'ext':'.md'},
+            \{'path': '~/vimwiki/tech/bash', 'syntax': 'markdown', 'ext':'.md'},
+            \{'path': '~/vimwiki/tech/html', 'syntax': 'markdown', 'ext':'.md'},
+            \{'path': '~/vimwiki/tech/regex', 'syntax': 'markdown', 'ext':'.md'},
+            \{'path': '~/vimwiki/tech/python', 'syntax': 'markdown', 'ext':'.md'}]
 " }}}
